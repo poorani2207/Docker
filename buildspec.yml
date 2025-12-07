@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Dependencies...
+      - composer install
+  pre_build:
+    commands:
+      - echo Running pre-build...
+      - php artisan cache:clear
+  build:
+    commands:
+      - echo Build started on `date`
+      - php artisan config:cache
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - '**/*'
